@@ -15,7 +15,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Holub s psaníčkem */
+/* Holub s malým psaníčkem */
 .pigeon {
   font-size: 80px;
   position: absolute;
@@ -23,10 +23,10 @@ body {
   left: 50%;
   transform: translateX(-50%);
   z-index: 3;
-  animation: flyIn 2.5s ease-out forwards;
+  animation: flyIn 2s ease-out forwards;
 }
 
-/* Malé psaníčko, které holub drží */
+/* Malé psaníčko držené holubem */
 .paper-small {
   position: absolute;
   width: 40px;
@@ -34,28 +34,41 @@ body {
   background: #fff8e7;
   border: 1px solid #f0e0c0;
   border-radius: 3px;
-  top: 0; /* relativní k holubovi */
+  top: 0;
   left: 50%;
   transform: translateX(-50%);
   z-index: 4;
-  animation: dropLetter 2s ease-in 2.5s forwards; /* spadne po přistání holuba */
+  animation: dropLetter 1s ease-in 2.5s forwards;
+  animation-fill-mode: forwards;
 }
 
 /* Animace letu holuba */
 @keyframes flyIn {
   0% { top: -120px; }
-  80% { top: 200px; } /* konec letu holuba */
-  100% { top: 200px; } 
+  100% { top: 200px; } /* zastaví nahoře */
 }
 
-/* Animace pádu psaníčka */
+/* Animace pádu papírku */
 @keyframes dropLetter {
-  0% { top: 0; opacity: 1; }
-  50% { top: 0; opacity: 1; }
-  100% { top: 180px; opacity: 1; } /* spadne níž, pod holubem */
+  0% { top: 0; }
+  50% { top: 0; } /* pauza půl sekundy */
+  100% { top: 180px; } /* papírek spadne dolů */
 }
 
-/* Dopis - start skrytý, rozbalí se po pádu */
+/* Text mezi holubem a papírem */
+.message-text {
+  position: absolute;
+  top: 290px; /* přesně uprostřed mezi holubem a spadlým papírem */
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #444;
+  opacity: 0;
+  animation: textAppear 0.5s ease-in 3.6s forwards;
+  z-index: 2;
+}
+
+/* Dopis - start zmenšený a skrytý */
 .paper {
   position: relative;
   width: 500px;
@@ -68,31 +81,17 @@ body {
   line-height: 1.6;
   box-shadow: 0 25px 50px rgba(0,0,0,0.25), 0 10px 20px rgba(0,0,0,0.15);
   text-align: left;
-  transform: scaleY(0);
-  transform-origin: top;
+  transform: scale(0); /* start zmenšený */
   opacity: 0;
-  animation: unfold 1s ease-out 4.5s forwards; /* začne po dopadu psaníčka */
+  animation: unfold 1s ease-out 4s forwards; /* začne po dopadu papírku */
   background-image: repeating-linear-gradient(0deg, rgba(0,0,0,0.005), rgba(0,0,0,0.005) 1px, transparent 1px, transparent 6px);
-}
-
-/* Text mezi holubem a dopisem */
-.message-text {
-  position: absolute;
-  top: 350px; /* polovina vzdálenosti mezi holubem a dopisem */
-  text-align: center;
-  font-size: 1.5em;
-  font-weight: bold;
-  color: #444;
-  opacity: 0;
-  animation: textAppear 0.5s ease-in 4.5s forwards; /* objeví se spolu s dopisem */
-  z-index: 2;
 }
 
 /* Animace rozbalení dopisu */
 @keyframes unfold {
-  0% { transform: scaleY(0); opacity: 0; }
-  60% { transform: scaleY(1.05); opacity: 1; }
-  100% { transform: scaleY(1); opacity: 1; }
+  0% { transform: scale(0); opacity: 0; }
+  60% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
 }
 
 /* Animace zobrazení textu */
@@ -115,7 +114,7 @@ a:hover { color: #000; }
 </head>
 <body>
 
-  <!-- Holub s malým psaníčkem -->
+  <!-- Holub + papírek -->
   <div class="pigeon">🕊️
     <div class="paper-small"></div>
   </div>
@@ -123,7 +122,7 @@ a:hover { color: #000; }
   <!-- Text mezi holubem a dopisem -->
   <div class="message-text">Digitální holub doručil zprávu</div>
 
-  <!-- Dopis, který se rozvine -->
+  <!-- Dopis -->
   <div class="paper">
     <p>
       Ahoj,<br><br>
