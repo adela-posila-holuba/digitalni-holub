@@ -5,39 +5,55 @@
 <title>Digitální holub</title>
 <style>
 body {
-  background: #f7f7fb;
+  background: #f0f4f8; /* jemné nebe za papírem */
   font-family: 'Georgia', serif;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  margin: 0;
 }
 
-.paper {
-  background: #fff8e7; /* světle krémová barva papíru */
-  border: 2px solid #f0e0c0; /* jemný okraj */
-  border-radius: 12px;
-  padding: 30px 40px;
-  max-width: 500px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15); /* jemný stín pro 3D efekt */
-  text-align: left;
-  line-height: 1.6;
-  position: relative;
-}
-
+/* Holub létající nad papírem */
 .pigeon {
   font-size: 80px;
-  animation: fly 2s ease-in-out infinite;
-  text-align: center;
-  margin-bottom: 20px;
+  position: absolute;
+  top: 50px;
+  animation: fly 2.5s ease-in-out infinite;
 }
 
 @keyframes fly {
-  0% { transform: translateX(-20px); }
-  50% { transform: translateX(20px); }
-  100% { transform: translateX(-20px); }
+  0% { transform: translateX(-30px); }
+  50% { transform: translateX(30px); }
+  100% { transform: translateX(-30px); }
 }
 
+/* Text mezi holubem a papírem */
+.message-text {
+  position: absolute;
+  top: 160px;
+  text-align: center;
+  font-size: 1.4em;
+  font-weight: bold;
+  color: #444;
+}
+
+/* Papír s papírovým efektem */
+.paper {
+  background: #fff8e7; /* krémová barva papíru */
+  border: 2px solid #f0e0c0; /* jemný okraj papíru */
+  border-radius: 12px;
+  padding: 40px 50px;
+  max-width: 500px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25), 0 10px 20px rgba(0,0,0,0.15); /* větší stín pro 3D efekt */
+  text-align: left;
+  line-height: 1.6;
+  position: relative;
+  top: 220px; /* posunutí dolů, aby holub a text byly nad papírem */
+  background-image: linear-gradient(transparent 95%, rgba(0,0,0,0.02) 95%); /* jemná textura pruhů */
+}
+
+/* Odkaz */
 a {
   display: inline-block;
   margin-top: 20px;
@@ -50,16 +66,16 @@ a {
 a:hover {
   color: #000;
 }
-
 </style>
 </head>
 <body>
+  <div class="pigeon">🕊️</div>
+  <div class="message-text">Digitální holub doručil zprávu</div>
+
   <div class="paper">
-    <div class="pigeon">🕊️</div>
-    <h2>Digitální holub doručil zprávu</h2>
     <p>
       Ahoj,<br><br>
-      psali jste, že se mám klidně ozvat holubem, takže posílám dopisní verzi 🕊️<br><br>
+      psali jste, že se mám klidně ozvat holubem, tak posílám dopisní verzi 🕊️<br><br>
       Jmenuju se <strong>DOPLŇ JMÉNO</strong> a ráda bych si s vámi pokecala o spolupráci.<br>
       Všechno důležité o mně je tady 👇
     </p>
