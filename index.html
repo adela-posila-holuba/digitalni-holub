@@ -6,51 +6,64 @@
 <style>
 body {
   background: #f7f7fb;
-  font-family: Arial, sans-serif;
+  font-family: 'Georgia', serif;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  text-align: center;
 }
+
+.paper {
+  background: #fff8e7; /* světle krémová barva papíru */
+  border: 2px solid #f0e0c0; /* jemný okraj */
+  border-radius: 12px;
+  padding: 30px 40px;
+  max-width: 500px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15); /* jemný stín pro 3D efekt */
+  text-align: left;
+  line-height: 1.6;
+  position: relative;
+}
+
 .pigeon {
   font-size: 80px;
   animation: fly 2s ease-in-out infinite;
+  text-align: center;
+  margin-bottom: 20px;
 }
+
 @keyframes fly {
   0% { transform: translateX(-20px); }
   50% { transform: translateX(20px); }
   100% { transform: translateX(-20px); }
 }
+
 a {
   display: inline-block;
   margin-top: 20px;
   text-decoration: none;
   font-weight: bold;
+  color: #444;
+  transition: color 0.2s;
 }
+
+a:hover {
+  color: #000;
+}
+
 </style>
 </head>
 <body>
-  <div>
+  <div class="paper">
     <div class="pigeon">🕊️</div>
     <h2>Digitální holub doručil zprávu</h2>
     <p>
-      Ahoj LOLO.teame!<br><br>
-      
-      Holub se někde zatoulal, tak posílám digitální verzi 🕊️<br><br>
-
-      Váš inzerát mě fakt oslovil a dokonce i rozesmál, navíc popis toho, co v novém člověku <br>
-      hledáte, se mnou dost rezonuje. I když tomu třeba na první pohled můj korporátní linkáč <br>
-      neodpovídá, tenhle směr je přesně to, kam se chci posunout. <br><br>
-      
-      Možná sice nemám všechny checkboxy odškrtnuté (například 10+ let v CV), <br>
-      ale rychle se učím, makám a chci být u věcí, které se fakt hýbou. <br><br>
-
-      Pokud to pro vás není něco, přes co nejede vlak, ráda proberu vzájemné možnosti u piva 🍻 <br><br>
-
-      
+      Ahoj,<br><br>
+      psali jste, že se mám klidně ozvat holubem, takže posílám dopisní verzi 🕊️<br><br>
+      Jmenuju se <strong>DOPLŇ JMÉNO</strong> a ráda bych si s vámi pokecala o spolupráci.<br>
+      Všechno důležité o mně je tady 👇
     </p>
-    <a href="https://www.linkedin.com/in/adéla-barabášová-635a70205/" target="_blank">
+    <a href="https://www.linkedin.com/in/TVOJPROFIL" target="_blank">
       🔗 Otevřít LinkedIn
     </a>
   </div>
