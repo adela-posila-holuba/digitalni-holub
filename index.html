@@ -2,10 +2,10 @@
 <html lang="cs">
 <head>
 <meta charset="UTF-8">
-<title>Digitální holub</title>
+<title>Digitální holub doručil dopis</title>
 <style>
 body {
-  background: #e3edf7; /* jemné nebe za papírem */
+  background: #e3edf7;
   font-family: 'Georgia', serif;
   display: flex;
   justify-content: center;
@@ -15,48 +15,61 @@ body {
   overflow-x: hidden;
 }
 
-/* Holub létající nad papírem */
+/* Holub létající, pak přistane */
 .pigeon {
   font-size: 80px;
   position: absolute;
-  top: 40px;
-  animation: fly 2.5s ease-in-out infinite;
+  top: -100px; /* start nad obrazovkou */
+  animation: flyIn 3s ease-out forwards;
   z-index: 3;
 }
 
-@keyframes fly {
-  0% { transform: translateX(-30px); }
-  50% { transform: translateX(30px); }
-  100% { transform: translateX(-30px); }
+@keyframes flyIn {
+  0% { top: -100px; transform: translateX(-100px) rotate(0deg); }
+  50% { top: 120px; transform: translateX(100px) rotate(-15deg); }
+  80% { top: 180px; transform: translateX(0px) rotate(5deg); }
+  100% { top: 180px; transform: translateX(0px) rotate(0deg); }
 }
 
 /* Text mezi holubem a papírem */
 .message-text {
   position: absolute;
-  top: 120px; /* menší mezera */
+  top: 220px;
   text-align: center;
   font-size: 1.5em;
   font-weight: bold;
   color: #444;
   z-index: 2;
+  opacity: 0;
+  animation: textAppear 1s 2.8s forwards; /* objeví se po přistání holuba */
 }
 
-/* Papír s reálnějším papírovým efektem */
+@keyframes textAppear {
+  to { opacity: 1; }
+}
+
+/* Papír s jemnou texturou a „zvednutím“ při doručení */
 .paper {
-  background: #fff8e7; /* krémová barva papíru */
+  background: #fff8e7;
+  border: 2px solid #f0e0c0;
   border-radius: 12px;
   padding: 40px 50px;
   max-width: 500px;
   line-height: 1.6;
-  position: relative;
-  margin-top: 180px; /* posun papíru níž, blíž k textu */
-  box-shadow:
-    0 25px 50px rgba(0,0,0,0.25), /* velký stín */
-    0 10px 20px rgba(0,0,0,0.15);  /* jemný stín */
+  margin-top: 260px;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.25), 0 10px 20px rgba(0,0,0,0.15);
   background-image: 
-    linear-gradient(transparent 95%, rgba(0,0,0,0.02) 95%), /* jemná textura pruhů */
-    radial-gradient(circle at top left, rgba(0,0,0,0.03), transparent 50%); /* lehké záhyby */
-  z-index: 1;
+    repeating-linear-gradient(0deg, rgba(0,0,0,0.005), rgba(0,0,0,0.005) 1px, transparent 1px, transparent 6px);
+  position: relative;
+  transform: translateY(0);
+  animation: paperBounce 0.5s 3s forwards; /* po přistání holuba */
+}
+
+@keyframes paperBounce {
+  0% { transform: translateY(0); }
+  30% { transform: translateY(-15px); }
+  60% { transform: translateY(0); }
+  100% { transform: translateY(-5px); }
 }
 
 /* Odkaz */
@@ -71,25 +84,6 @@ a {
 
 a:hover {
   color: #000;
-}
-
-/* Lehké „vrásky“ papíru */
-.paper::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: repeating-linear-gradient(
-    135deg,
-    rgba(0,0,0,0.005),
-    rgba(0,0,0,0.005) 1px,
-    transparent 1px,
-    transparent 5px
-  );
-  border-radius: 12px;
-  pointer-events: none;
 }
 </style>
 </head>
